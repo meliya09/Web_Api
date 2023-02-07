@@ -19,7 +19,7 @@ import UsersList from '../Users/UsersList';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © BPD DIY SMART '}
+      {'Copyright © meliya '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>

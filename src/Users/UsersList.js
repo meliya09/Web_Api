@@ -16,10 +16,41 @@ export default function UsersList() {
     getUsers();
   }, []);
 
-  const getUsers = async () => {
-    const users = await axios.get(`https://jsonplaceholder.typicode.com/users`);
-    setUsers(users.data);
-  }
+//   const getUsers = async () => {
+//     let users = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+
+//     setUsers(users.data);
+//   }
+
+//   function func() { 
+//     //Original string 
+//     var str = "Sincere@april.biz";
+//     var array = str.split("@");
+//    console.log(array); 
+// } 
+// func(); 
+
+const getUsers = async () => {
+  const users = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+  const newUserValue = [];
+
+  users.data.forEach((user, index) => {
+    let arrEmail = user.email.split("@");
+    let obj = {};
+    obj.id = user.id;
+    obj.name = user.name;
+    obj.email = user.email;
+    obj.company = user.company;
+    obj.address = user.address;
+    obj.phone = user.phone;
+    obj.website = user.website;
+    obj.arrEmail = arrEmail;
+    newUserValue.push(obj);
+  });
+  console.log(newUserValue);
+
+  setUsers(newUserValue);
+};
 
   return (
     <>
@@ -33,6 +64,7 @@ export default function UsersList() {
                   <TableCell align="left">Name</TableCell>
                   <TableCell align="left">Username</TableCell>
                   <TableCell align="left">Email</TableCell>
+                  <TableCell align="center" colSpan={2}>Split Email</TableCell>
                   <TableCell align="center" colSpan={6}>Address</TableCell>
                   <TableCell align="left">Phone</TableCell>
                   <TableCell align="left">Website</TableCell>
@@ -43,6 +75,8 @@ export default function UsersList() {
                   <TableCell align="left"></TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left"></TableCell>
+                  <TableCell align="left">split 1</TableCell>
+                  <TableCell align="left">split 2</TableCell>
                   <TableCell align="left">Street</TableCell>
                   <TableCell align="left">Suite</TableCell>
                   <TableCell align="left">City</TableCell>
@@ -66,6 +100,8 @@ export default function UsersList() {
                     <TableCell align="left">{user.name}</TableCell>
                     <TableCell align="left">{user.username}</TableCell>
                     <TableCell align="left">{user.email}</TableCell>
+                    <TableCell align="left">{user.arrEmail[0]}</TableCell>
+                    <TableCell align="left">{user.arrEmail[1]}</TableCell>
                     <TableCell align="left">{user.address.street}</TableCell>
                     <TableCell align="left">{user.address.suite}</TableCell>
                     <TableCell align="left">{user.address.city}</TableCell>

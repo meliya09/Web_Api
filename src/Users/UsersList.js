@@ -39,6 +39,7 @@ const getUsers = async () => {
     let obj = {};
     obj.id = user.id;
     obj.name = user.name;
+    obj.username = user.username;
     obj.email = user.email;
     obj.company = user.company;
     obj.address = user.address;
